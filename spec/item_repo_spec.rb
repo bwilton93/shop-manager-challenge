@@ -1,11 +1,5 @@
 require 'item_repo'
 
-def reset_tables
-  seeds = File.read('spec/seeds.sql')
-  connection = PG.connect({ host: '127.0.0.1', dbname: 'shop_manager' })
-  connection.exec(seeds)
-end
-
 RSpec.describe ItemRepo do
   before(:each) do
     reset_tables
@@ -26,6 +20,13 @@ RSpec.describe ItemRepo do
   end
 
   it "can create a new item and add it to the items table" do
+    repo = ItemRepo.new
 
+    item = double :item, name: 'fake_game', unit_price: 1, quantity: 1
+    
+    repo.create_item(item)
+    items = repo.all
+    
+    expect(items.length).to eq 5
   end
 end

@@ -1,11 +1,5 @@
 require 'function_repo'
 
-def reset_tables
-  seeds = File.read('spec/seeds.sql')
-  connection = PG.connect({ host: '127.0.0.1', dbname: 'shop_manager' })
-  connection.exec(seeds)
-end
-
 RSpec.describe FunctionRepo do
   before(:each) do
     reset_tables
