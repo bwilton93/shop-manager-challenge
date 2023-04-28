@@ -50,4 +50,4 @@ INSERT INTO shop_functions (function) VALUES
 ('List all items.'),
 ('Create a new item.'),
 ('List all orders.'),
-('Create a new order');
+('Create a new order.');

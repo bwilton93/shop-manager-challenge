@@ -16,7 +16,7 @@ RSpec.describe FunctionRepo do
 
     functions = repo.all
     expect(functions.length).to eq 4
-    expect(functions.first.function).to eq 'List all items'
-    expect(functions.last.function).to eq 'Create a new order'
+    expect(functions.first.function).to eq 'List all items.'
+    expect(functions.last.function).to eq 'Create a new order.'
   end
 end
