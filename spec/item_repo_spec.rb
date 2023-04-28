@@ -29,4 +29,13 @@ RSpec.describe ItemRepo do
     
     expect(items.length).to eq 5
   end
+
+  it "returns an array of items assigned to order 1" do
+    repo = ItemRepo.new
+
+    items = repo.find_items_by_order(1)
+    expect(items.length).to eq 2
+    expect(items.first.name).to eq 'Star Wars Jedi: Survivor'
+    expect(items.last.name).to eq 'Dead Space'
+  end
 end
