@@ -44,6 +44,9 @@ RSpec.describe OrderRepo do
   it "can assign an order to an item" do
     repo = OrderRepo.new
 
-    result = repo.add_item_to_order(1, 1)
+    repo.add_item_to_order(4, 1)
+    result = repo.fetch_items(1)
+    expect(result.length).to eq 3
+    expect(result.last.name).to eq 'Metroid Prime'
   end
 end
