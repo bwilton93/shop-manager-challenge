@@ -27,5 +27,7 @@ RSpec.describe OrderRepo do
     orders = repo.all
 
     expect(orders.length).to eq 4
+    expect(orders.last.customer_name).to eq 'fake_name'
+    expect(orders.last.order_date).to eq '2023-04-28'
   end
 end
