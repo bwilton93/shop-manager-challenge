@@ -65,6 +65,7 @@ class OrderRepo
   def fetch_item(result)
     item = Item.new
 
+    item.id = result['id']
     item.name = result['name']
     item.unit_price = result['unit_price']
     item.quantity = result['quantity']

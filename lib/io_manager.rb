@@ -65,22 +65,46 @@ class IOManager
   end
 
   def create_item
-
+    item = Item.new
+    @io.print("Item name: ")
+    item.name = input
+    @io.print("Item price: ")
+    item.unit_price = input
+    @io.print("Item quantity: ")
+    item.quantity = input
+    @item_repo.create_item(item)
   end
 
   def list_orders
-
+    orders = @order_repo.all
   end
 
   def create_order
     @io.print "Enter customer name: "
     customer_name = input
-    
     order = Order.new
     order.customer_name = customer_name
     order.order_date = Date.today
     @order_repo.create_order(order)
     new_line
+    # This block returns the order_id of the last created order
+    sql = 'SELECT id FROM orders WHERE customer_name = $1 ORDER BY id DESC;'
+    result = DatabaseConnection.exec_params(sql, [order.customer_name])
+    
+    assign_items(result.first['id'])
+  end
+
+  def assign_items(order_id)
+    while true
+      @io.print "Add item to order: "
+      item_to_add = input
+      if item_to_add.empty?
+        new_line
+        break
+      else
+        @order_repo.add_item_to_order(item_to_add, order_id)
+      end
+    end
   end
 
   def new_line
