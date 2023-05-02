@@ -77,6 +77,13 @@ class IOManager
 
   def list_orders
     orders = @order_repo.all
+    orders.each do |order|
+      @io.puts "#{order.customer_name} - #{order.order_date}"
+      order.items.each do |item|
+        @io.puts "* #{item.name}"
+      end
+      new_line
+    end
   end
 
   def create_order
