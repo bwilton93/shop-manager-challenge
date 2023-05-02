@@ -24,4 +24,24 @@ RSpec.describe IOManager do
     io_manager = IOManager.new(io)
     io_manager.run
   end
+  
+  it "creates an order" do
+    io = double :io
+    expect(io).to receive(:puts).with("Welcome to the shop management program.")
+    expect(io).to receive(:puts).with("")
+    expect(io).to receive(:puts).with("What do you want to do?")
+    expect(io).to receive(:puts).with("1 = List all items.")
+    expect(io).to receive(:puts).with("2 = Create a new item.")
+    expect(io).to receive(:puts).with("3 = List all orders.")
+    expect(io).to receive(:puts).with("4 = Create a new order.")
+    expect(io).to receive(:puts).with("")
+    expect(io).to receive(:gets).and_return("4")
+    expect(io).to receive(:puts).with("")
+    expect(io).to receive(:print).with("Enter customer name: ")
+    expect(io).to receive(:puts).with("")
+    expect(io).to receive(:gets).and_return("Sam")
+
+    io_manager = IOManager.new(io)
+    io_manager.run
+  end
 end
